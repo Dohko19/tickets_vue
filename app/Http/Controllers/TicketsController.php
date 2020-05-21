@@ -9,22 +9,16 @@ class TicketsController extends Controller
 {
     public function registrar(Request $request)
     {
-        if (request()->wantsJson())
-        {
-            $tickets = new Tickets;
-            $tickets->user_id = auth()->user()->id;
-            $tickets->motivo = $request->motivo;
-            $tickets->comentario = $request->comentario;
-            $tickets->otroMotivo = $request->otroMotivo;
-            $tickets->status = $request->status;
-            if ($request->get('foto1'))
-            {
-                $image = $request->get('foto1');
-                $image = file_get_contents($image);
-                $base64 =  base64_encode($image);
-            }
-            $tickets->foto1 = $base64;
-            $tickets->save();
+        if (request()->wantsJson()) {
+            return $request->all();
+            // $tickets = new Tickets;
+            // $tickets->user_id = auth()->user()->id;
+            // $tickets->motivo = $request->motivo;
+            // $tickets->comentario = $request->comentario;
+            // $tickets->otroMotivo = $request->otroMotivo;
+            // $tickets->status = $request->status;
+            // $tickets->foto1 = 'dod';
+            // $tickets->save();
         }
         return redirect('/');
     }

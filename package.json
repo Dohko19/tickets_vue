@@ -25,6 +25,9 @@
     },
     "dependencies": {
         "toastr": "^2.1.4",
-        "vue-toastr-2": "^0.0.10"
+        "vue-image-lightbox-carousel": "^1.0.7",
+        "vue-popperjs": "^2.3.0",
+        "vue-toastr-2": "^0.0.10",
+        "vue-upload-multiple-image": "^1.1.4"
     }
 }
