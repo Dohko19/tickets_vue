@@ -296,50 +296,9 @@ export default {
                 .then(res => {
                     me.cerrarModal();
                     console.log(res);
-                    this.$toastr.success(
-                        "El ticket fue dado de alta exitosamente ",
-                        "Guardado",
-                        (toastr.options = {
-                            closeButton: true,
-                            debug: false,
-                            newestOnTop: false,
-                            progressBar: true,
-                            positionClass: "toast-top-right",
-                            preventDuplicates: false,
-                            showDuration: "300",
-                            hideDuration: "1000",
-                            timeOut: 5000,
-                            extendedTimeOut: 1000,
-                            showEasing: "swing",
-                            hideEasing: "linear",
-                            showMethod: "fadeIn",
-                            hideMethod: "fadeOut",
-                            tapToDismiss: false
-                        })
-                    );
                 })
                 .catch(err => {
-                    this.$toastr.error(
-                        "Algo salio mal" + err,
-                        "Error",
-                        (toastr.options = {
-                            closeButton: true,
-                            debug: false,
-                            newestOnTop: false,
-                            progressBar: true,
-                            positionClass: "toast-top-right",
-                            preventDuplicates: false,
-                            showDuration: "300",
-                            hideDuration: "1000",
-                            timeOut: 5000,
-                            extendedTimeOut: 1000,
-                            showEasing: "swing",
-                            hideEasing: "linear",
-                            showMethod: "fadeIn",
-                            hideMethod: "fadeOut",
-                            tapToDismiss: false
-                        })
-                    );
+
                 });
         }
     },
