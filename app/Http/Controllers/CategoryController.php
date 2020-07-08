@@ -15,8 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
-        if(request()->wantsJson())
-        {
+        if (request()->wantsJson()) {
             return $category;
         }
     }
@@ -38,7 +37,6 @@ class CategoryController extends Controller
         $category->save();
 
         return response(['status' => 'success'], 202);
-
     }
 
     /**
@@ -49,7 +47,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $category->load('products');
+
+        if (request()->wantsJson()) {
+            return $category;
+        }
     }
 
     /**
@@ -72,7 +74,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        dd($request->all());
+        $category->update($request->only('name', 'description'));
+        if ($request->image) {
+
+            $previusPath = $category->image;
+            $category->image = $request->image->store('public/categories');
+            // $productImage->featured = false;
+            $saved = $category->save();
+            if ($saved) {
+                \Storage::delete($previusPath);
+                //                    File::delete($previousPath);
+            }
+        }
+        return response(['status' => 'success'], 202);
     }
 
     /**
@@ -83,6 +98,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        \Storage::delete($category->image);
+        $category->delete();
+
+        return response(['status' => 'success'], 202);
     }
 }

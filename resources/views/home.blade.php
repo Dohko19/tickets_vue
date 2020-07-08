@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user" content="{{ Auth::user() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -26,11 +27,11 @@
         <nav-bar></nav-bar>
 
         <main class="py-4">
-            {{--  <transition-group tag="div" name="fade" style="animation-duration: 0.3s">  --}}
+             {{-- <transition-group tag="" name="fade" style="animation-duration: 0.3s">  --}}
                 <router-view :key="$route.fullPath"></router-view>
 
                 <vue-progress-bar></vue-progress-bar>
-            {{--  </transition-group>  --}}
+             {{-- </transition-group>  --}}
         </main>
     </div>
 </body>

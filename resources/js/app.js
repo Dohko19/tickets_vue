@@ -49,6 +49,10 @@ Vue.component("tickets", require("./components/Tickets").default);
 Vue.component("manage-persons", require("./components/ManagePersons").default);
 Vue.component("nav-bar", require("./components/NavBar").default);
 
+import auth from './mixins/auth';
+
+Vue.mixin(auth);
+
 const app = new Vue({
     el: "#app",
     router,

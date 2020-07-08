@@ -10,6 +10,11 @@ class Category extends Model
 
     protected $appends = ['image_category'];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function getImageCategoryAttribute()
     {
         return \Storage::url($this->image);
