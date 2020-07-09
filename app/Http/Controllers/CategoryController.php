@@ -74,9 +74,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        dd($request->all());
+
         $category->update($request->only('name', 'description'));
-        if ($request->image) {
+        if ($request->image != null) {
 
             $previusPath = $category->image;
             $category->image = $request->image->store('public/categories');

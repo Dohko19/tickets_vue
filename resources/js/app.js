@@ -44,11 +44,16 @@ Vue.use(VueLazyload);
 window.swal = swal;
 window.toastr = require('toastr');
 Vue.use(VueToastr2);
+
+import Vue from 'vue'
+import VTooltip from 'v-tooltip'
+
+Vue.use(VTooltip)
 // Componentes
 Vue.component("tickets", require("./components/Tickets").default);
 Vue.component("manage-persons", require("./components/ManagePersons").default);
 Vue.component("nav-bar", require("./components/NavBar").default);
-
+Vue.component("admin-category", require("./components/AdminCategory").default);
 import auth from './mixins/auth';
 
 Vue.mixin(auth);
