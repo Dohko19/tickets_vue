@@ -8,8 +8,9 @@
 
             <div class="card-body">
               <div class>
+
                 <button
-                  class="btn btn-primary float-right"
+                  class="btn btn-primary mb-1 float-right"
                   @click="newCategory"
                 >Agregar Nueva Categoria</button>
                 <div class="table-resposive">
@@ -171,7 +172,7 @@ export default {
     },
     getCategories() {
       axios
-        .get("category/list")
+        .get("/category/list")
         .then(res => {
           this.categories = res.data;
         })
@@ -225,7 +226,6 @@ export default {
       formData.append("description", this.form.description);
       formData.append("image", this.form.image);
       const config = { headers: { "Content-Type": "multipart/form-data" } };
-      console.log(formData)
       axios
         .post("category/save", formData, config)
         .then(res => {

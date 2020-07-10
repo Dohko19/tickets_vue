@@ -6,6 +6,7 @@
           <div class="card text-center">
             <div class="card-header">Producto</div>
             <div class="card-body">
+                <img class="image-responsive" :src="product.featured_image_url" width="120px" height="120px" alt="image product freatured">
               <h5 class="card-title" v-text="product.name"></h5>
               <p class="card-text" v-text="product.description"></p>
               <div class="alert alert-primary" role="alert">

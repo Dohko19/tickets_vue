@@ -142,9 +142,36 @@ export default new Router({
             }
         },
         {
-            path: "/products/:product",
+            path: "/product/:product",
             name: "product_show",
             component: require("./views/ProductShow").default,
+            meta: {
+                progress: {
+                    func: [
+                        {
+                            call: "color",
+                            modifier: "temp",
+                            argument: "#ffb000"
+                        },
+                        { call: "fail", modifier: "temp", argument: "#6e0000" },
+                        { call: "location", modifier: "temp", argument: "top" },
+                        {
+                            call: "transition",
+                            modifier: "temp",
+                            argument: {
+                                speed: "1.5s",
+                                opacity: "0.6s",
+                                termination: 400
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            path: "/admin/products/:id/images",
+            name: "images_show",
+            component: require("./views/ImagesShow").default,
             meta: {
                 progress: {
                     func: [

@@ -81,9 +81,6 @@ export default {
 
             this.form.avatar = e.target.files[0];
 
-
-        console.log(this.form.avatar);
-
         let fileList = Array.prototype.slice.call(e.target.files);
         fileList.forEach(f => {
             if(!f.type.match("image.*")) {

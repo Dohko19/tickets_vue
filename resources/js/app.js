@@ -16,6 +16,7 @@ require('vue2-animate/dist/vue2-animate.min.css')
 
 //progressbar
 import VueProgressBar from 'vue-progressbar'
+
 Vue.use(VueProgressBar, {
     color: 'rgb(143, 255, 199)',
     failedColor: 'red',
@@ -45,15 +46,22 @@ window.swal = swal;
 window.toastr = require('toastr');
 Vue.use(VueToastr2);
 
-import Vue from 'vue'
 import VTooltip from 'v-tooltip'
 
 Vue.use(VTooltip)
+
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+
+Vue.use(vue2Dropzone);
 // Componentes
 Vue.component("tickets", require("./components/Tickets").default);
 Vue.component("manage-persons", require("./components/ManagePersons").default);
 Vue.component("nav-bar", require("./components/NavBar").default);
 Vue.component("admin-category", require("./components/AdminCategory").default);
+Vue.component("admin-products", require("./components/AdminProducts").default);
+Vue.component("vue-dropzone", vue2Dropzone);
+
 import auth from './mixins/auth';
 
 Vue.mixin(auth);

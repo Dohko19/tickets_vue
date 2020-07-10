@@ -10,12 +10,12 @@
                      <div class="row">
                             <div class="col-md-3" v-for="products in category.products" :key="products.id">
                                    <div class="card" style="width: 18rem;">
-                                      <!-- <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap"> -->
+                                      <img class="card-img-top" :src="products.featured_image_url" alt="image product freatured">
                                     <div class="card-body">
                                       <h5 class="card-title" v-text="products.name"></h5>
                                       <h6 class="card-subtitle mb-2 text-muted" v-text="products.description"></h6>
                                       <p class="card-text" v-text="products.long_description"></p>
-                                      <router-link :to="{name: 'product_show', params:{product: products.id} }" 
+                                      <router-link :to="{name: 'product_show', params:{product: products.id} }"
                                       class="card-link">
                                       Ver detalles...
                                       </router-link>
@@ -27,7 +27,7 @@
               </div>
        </div>
   </div>
-</template>   
+</template>
 <script>
 export default {
   data() {
@@ -38,7 +38,6 @@ export default {
   mounted() {
     axios.get(`/category/show/${this.$route.params.category}`)
       .then(res => {
-        console.log(res.data);
         this.category = res.data;
       })
       .catch(err => {
