@@ -36,4 +36,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ['cart'];
+
+    function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+    //cart id
+    function getCartAttribute()
+    {
+        $carts = $this->carts()->where('status', 'Active')->first();
+        if ($carts)
+            return $carts;
+
+        $cart = new Cart();
+        $cart->status = 'Active';
+        $cart->user_id = $this->id;
+        $cart->save();
+
+        return $cart;
+    }
 }

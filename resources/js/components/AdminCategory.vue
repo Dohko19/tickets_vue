@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="container">
+  <div>
+    <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-12">
           <div class="card">
@@ -8,7 +8,6 @@
 
             <div class="card-body">
               <div class>
-
                 <button
                   class="btn btn-primary mb-1 float-right"
                   @click="newCategory"
@@ -123,7 +122,7 @@
         </div>
       </div>
     </transition>
-    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -187,14 +186,15 @@ export default {
       formData.append("name", this.form.name);
       formData.append("description", this.form.description);
       formData.append("image", this.form.image);
-      formData.append('_method', 'PUT')
+      formData.append("_method", "PUT");
       //Para actualizar reggistros en un formData agregar este metodo, laravel no reconoce .put con formdata en axios,
       //hay que hacerlo de la manera tradicional como si se realizara en un form de blade normalmente
       const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-      axios.post("category/update/" + this.form.category, formData, config)
+      axios
+        .post("/category/update/" + this.form.category, formData, config)
         .then(res => {
-            console.log(res)
+          console.log(res);
           this.$refs.categoryInput.value = "";
           this.images = [];
           this.form.image = [];
@@ -215,7 +215,7 @@ export default {
         })
         .catch(err => {
           console.log(err.response);
-          toastr["danger"]("Error al registrar".err, "Error!");
+          toastr["error"]("Error al registrar" + err.response, "Error!");
           this.$Progress.fail();
         });
     },
@@ -227,7 +227,7 @@ export default {
       formData.append("image", this.form.image);
       const config = { headers: { "Content-Type": "multipart/form-data" } };
       axios
-        .post("category/save", formData, config)
+        .post("/category/save", formData, config)
         .then(res => {
           this.$refs.categoryInput.value = "";
           this.images = [];
