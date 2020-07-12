@@ -7,9 +7,9 @@
                      <h1 class="display-4 text-center">{{ category.name }}</h1>
                      <p class="lead text-center">{{ category.description }} </p>
                      <hr class="my-4">
-                     <div class="row">
+                     <div class="row" >
                             <div class="col-md-3" v-for="products in category.products" :key="products.id">
-                                   <div class="card" style="width: 18rem;">
+                                   <div class="card" style="">
                                       <img class="card-img-top" :src="products.featured_image_url" alt="image product freatured">
                                     <div class="card-body">
                                       <h5 class="card-title" v-text="products.name"></h5>

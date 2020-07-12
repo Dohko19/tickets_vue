@@ -18,7 +18,6 @@ class CreateCartsTable extends Migration
             $table->date('order_date')->nullable();
             $table->date('arrived_date')->nullable();
             $table->string('status');
-            $table->text('comment')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

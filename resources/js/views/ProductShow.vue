@@ -18,12 +18,12 @@
                                 class="card-text"
                                 v-text="product.description"
                             ></p>
-                            <div class="alert alert-primary" role="alert">
+                            <div class="">
                                 <p
                                     class="card-text font-weight-bold"
                                     v-text="product.long_description"
                                 ></p>
-                                <p>${{ product.price }}</p>
+                                <p>Precio: ${{ product.price }}</p>
                             </div>
                             <span v-if="isAuthenticated">
                                 <button
@@ -40,6 +40,9 @@
                         </div>
                         <!-- <div class="card-footer text-muted">2 days ago</div> -->
                     </div>
+                </div>
+                <div class="col-md-4" v-for="image in product.images" :key="image.id">
+                    <img :src="image.url" :alt="product.name" class="img-thumbnail rounded mx-auto d-block" width="200px" height="200px">
                 </div>
             </div>
         </div>
@@ -69,7 +72,7 @@
                         </div>
                         <form @submit.prevent="addNewArticle" method="post" enctype="multipart/form-data">
                             <div class="modal-body">
-                                <div class="form-group" :class="{ 'form-group--error': $v.quantity.$error }">
+                                <div class="form-group" :class="{ 'form-group--error': $v.quantity.$error, 'form-group--error': $v.comment.$error }">
                                   <input type="text" hidden v-model="product.price">
                                   <input type="text" hidden v-model="product.id">
                                     <input
@@ -81,13 +84,27 @@
                                     />
                                   <div class="error" :class="{'div': true, 'invalid-feedback': !$v.quantity.required}"  v-if="!$v.quantity.required">Campo requerido</div>
                                    <div class="error" style="color: red;" v-if="!$v.quantity.between">La cantidad debe ser minimo {{$v.quantity.$params.between.min}} y maximo {{$v.quantity.$params.between.max}}</div>
-                                    <p class="typ" 
+
+
+                                    <textarea class="form-control" v-model="comment"
+                                    :class="{'textarea': true, 'is-invalid': $v.comment.$invalid, 'textarea': !true, 'is-valid': !$v.comment.$invalid }"
+                                    placeholder="Agrega detalles a tu producto, ej. Picante extra, sin queso, salsa aparte. (este campo puede quedar vacio)" cols="30" rows="10"></textarea>
+
+                                    <div class="error" style="color: red;"
+                                    v-if="!$v.comment.minLength"
+                                    >
+                                        La cantidad debe ser minimo {{$v.comment.$params.minLength.min}} caracteres
+                                    </div>
+                                    <p class="typ"
                                       :class="{'p': true, 'valid-feedback': submitStatus === 'OK'}"
                                        v-if="submitStatus === 'OK'">Ok!</p>
-                                    <p class="typ" 
+                                    <p class="typ"
                                     :class="{'p': true, 'invalid-feedback': submitStatus === 'ERROR'}"
                                     v-if="submitStatus === 'ERROR'">Rellena el campo correctamente.</p>
                                     <p class="typ" v-if="submitStatus === 'PENDING'">Enviando...</p>
+                                    <p class="typ"
+                                    :class="{'p': true, 'text-info': submitStatus === 'Ops'}"
+                                     v-if="submitStatus === 'Ops'">Ya existe este producto en tu carrito de compras</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button
@@ -104,7 +121,7 @@
                                     >
                                         Agregar Producto
                                     </button>
-                                   
+
                                 </div>
                             </div>
                         </form>
@@ -133,40 +150,54 @@ export default {
             required,
             minLength: minLength(1),
             between: between(1, 50)
+        },
+        comment: {
+            minLength: minLength(6)
         }
     },
     methods: {
         newOrder() {
-            this.$Progress.start();
             this.quantity = 0;
+            this.comment = null;
             $("#addNew").modal("show");
-            this.$Progress.finish();
         },
         addNewArticle(){
           this.$Progress.start();
           this.$v.$touch()
           if (this.$v.$invalid) {
-            this.submitStatus = 'ERROR'
+            this.submitStatus = 'ERROR';
+            this.$Progress.fail();
+
           } else {
           // do your submit logic here
           this.submitStatus = 'PENDING'
           let formData = new FormData();
           formData.append("quantity", this.quantity);
           formData.append("product_id", this.$route.params.product);
+          formData.append("comment", this.comment);
           axios.post('/cart', formData)
           .then( res=> {
-              this.$Progress.finish();
+              console.log()
+              if (res.data.fail)
+              {
+              toastr["warning"](""+res.data.fail, "Upps!");
+              this.submitStatus = 'Ops';
+                this.$Progress.finish();
+              }
+              else{
+                  this.$Progress.finish();
               toastr["info"]("Articulo Agregado correctamente", "Ok!");
-              this.submitStatus = 'OK';
-            $("#addNew").modal("hidde");
+
+              }
+
+            $("#addNew").modal("hide");
 
           })
           .catch(err => {
-            console.log(err);
+                console.log(err);
                 this.$Progress.fail();
-                toastr["error"](err.response, "Ok!");
           })
-            
+
           }
         }
     },

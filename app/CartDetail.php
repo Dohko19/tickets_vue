@@ -6,29 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CartDetail extends Model
 {
-    protected $appends = ['total'];
-
     function product()
     {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function details()
-    {
-        return $this->hasMany(CartDetail::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function getTotalAttribute()
-    {
-        $total = 0;
-        foreach ($this->details as $detail) {
-            $total += $detail->quantity * $detail->product->price;
-        }
-        return $total;
+    	return $this->belongsTo(Product::class);
     }
 }

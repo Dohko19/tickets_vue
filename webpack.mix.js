@@ -17,6 +17,10 @@ mix.js("resources/js/app.js", "public/js").sass(
 );
 
 mix.browserSync({
-    // proxy: 'http://tickets_vue.sw',
-    proxy: "http://tickets_vue.test:8000/"
+    proxy: 'https://tickets_vue.sw',
+    // proxy: "http://tickets_vue.test:8000/"
 });
+
+if (mix.inProduction()) {
+    mix.version();
+}

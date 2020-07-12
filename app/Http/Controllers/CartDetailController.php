@@ -42,7 +42,7 @@ class CartDetailController extends Controller
         {
             if ($encuentra->product_id == $request->product_id)
             {
-                return response(['fail' => 'Este producto ya existe en tu Carrito de compras'], 400);
+                return response(['fail' => 'Este producto ya existe en tu Carrito de compras'],202);
 
             }
             else
@@ -115,6 +115,14 @@ class CartDetailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cartDetail = CartDetail::find($id);
+        // dd($cartDetail)
+        if ($cartDetail->cart_id == auth()->user()->cart->id)
+        {
+            $cartDetail->delete();
+        }
+        return response(['success' => 'ok']);
+        // $notification = 'El producto se a eliminado del carrito correctamente';
+        // return back()->with(compact('notification'));
     }
 }

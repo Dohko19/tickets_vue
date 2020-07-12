@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $fillable = [ 'name', 'description', 'long_description', 'price', 'category_id' ];
 
-    protected $appends = ['product_created', 'featured_image_url'];
+    protected $appends = ['product_created', 'featured_image_url', 'category_name'];
 
     public function getProductCreatedAttribute()
     {

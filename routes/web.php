@@ -14,7 +14,7 @@ Route::get('people/list', 'PersonController@list');
 
 Route::post('/cart', 'CartDetailController@store');
 Route::put('cart/{cart}', 'CartDetailController@update')->name('cart.update');
-Route::delete('/cart', 'CartDetailController@destroy');
+Route::delete('/cart/{id}', 'CartDetailController@destroy');
 Route::put('/cart', 'CartDetailController@destroy');
 
 Route::get('category/list', 'CategoryController@index');
