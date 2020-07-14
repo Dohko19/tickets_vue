@@ -75238,6 +75238,14 @@ var render = function() {
                               : _vm._e(),
                             _vm._v(" "),
                             _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.comment,
+                                  expression: "comment"
+                                }
+                              ],
                               staticClass: "form-control",
                               class: {
                                 textarea: true,
@@ -75250,6 +75258,15 @@ var render = function() {
                                   "Agrega detalles a tu producto, ej. Picante extra, sin queso, salsa aparte. (este campo puede quedar vacio)",
                                 cols: "30",
                                 rows: "10"
+                              },
+                              domProps: { value: _vm.comment },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.comment = $event.target.value
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -112456,6 +112473,15 @@ Vue.mixin(_mixins_auth__WEBPACK_IMPORTED_MODULE_12___default.a);
 var app = new Vue({
   el: "#app",
   router: _routes__WEBPACK_IMPORTED_MODULE_0__["default"],
+  computed: {
+    cachedViews: function cachedViews() {
+      console.log(this.$store);
+      return this.$store; // state.tagsView.cachedViews
+    },
+    key: function key() {
+      return this.$route.path;
+    }
+  },
   mounted: function mounted() {
     //  [App.vue specific] When App.vue is finish loading finish the progress bar
     this.$Progress.finish();

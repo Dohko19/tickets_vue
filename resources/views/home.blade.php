@@ -26,11 +26,11 @@
     <div id="app">
         <nav-bar></nav-bar>
         <main class="py-4">
-             {{-- <transition-group tag="" name="fade" style="animation-duration: 0.3s">  --}}
-                <router-view :key="$route.fullPath"></router-view>
-
-                <vue-progress-bar></vue-progress-bar>
-             {{-- </transition-group>  --}}
+             {{--  <transition-group tag="div" name="fade" style="animation-duration: 0.3s">  --}}
+             <keep-alive :include="cachedViews">
+                <router-view :key="key"></router-view>
+            </keep-alive>
+             {{--  </transition-group>  --}}
         </main>
     </div>
 </body>
