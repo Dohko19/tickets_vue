@@ -1,7 +1,7 @@
 require("./bootstrap");
 
 window.Vue = require("vue");
-
+import Vuex from 'vuex'
 import router from "./routes";
 
 import VueToastr2 from "vue-toastr-2";
@@ -62,6 +62,7 @@ Vue.component("manage-persons", require("./components/ManagePersons").default);
 Vue.component("nav-bar", require("./components/NavBar").default);
 Vue.component("admin-category", require("./components/AdminCategory").default);
 Vue.component("admin-products", require("./components/AdminProducts").default);
+Vue.component("tags-view", require("./components/TagsView").default);
 Vue.component("vue-dropzone", vue2Dropzone);
 
 import auth from "./mixins/auth";
@@ -71,10 +72,11 @@ Vue.mixin(auth);
 const app = new Vue({
     el: "#app",
     router,
+    state,
     computed: {
             cachedViews() {
                 console.log(this.$store);
-            return this.$store
+            return this.$store.state
             // state.tagsView.cachedViews
             },
             key() {

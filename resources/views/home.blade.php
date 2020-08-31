@@ -26,6 +26,7 @@
     <div id="app">
         <nav-bar></nav-bar>
         <main class="py-4">
+            <tags-view />
              {{--  <transition-group tag="div" name="fade" style="animation-duration: 0.3s">  --}}
              <keep-alive :include="cachedViews">
                 <router-view :key="key"></router-view>
