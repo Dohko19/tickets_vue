@@ -1,7 +1,7 @@
 require("./bootstrap");
 
 window.Vue = require("vue");
-
+import Vuex from 'vuex'
 import router from "./routes";
 
 import VueToastr2 from "vue-toastr-2";
@@ -73,7 +73,6 @@ const app = new Vue({
     router,
     computed: {
             cachedViews() {
-                console.log(this.$store);
             return this.$store
             // state.tagsView.cachedViews
             },

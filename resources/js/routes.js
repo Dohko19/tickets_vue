@@ -11,6 +11,9 @@ export default new Router({
             name: "home",
             component: require("./views/Home").default,
             meta: {
+                title: 'home',
+                noCache: true,
+                affix: true,
                 progress: {
                     func: [
                         {
@@ -36,6 +39,9 @@ export default new Router({
         {
             path: "/personas",
             name: "people",
+            title: 'personas',
+            noCache: true,
+            affix: true,
             component: require("./views/Personas").default,
             meta: {
                 progress: {
@@ -65,6 +71,9 @@ export default new Router({
             name: "products_admin",
             component: require("./views/Products").default,
             meta: {
+                title: 'ProductosListado',
+                noCache: true,
+                affix: true,
                 progress: {
                     func: [
                         {
@@ -92,6 +101,9 @@ export default new Router({
             name: "category_admin",
             component: require("./views/Categories").default,
             meta: {
+            title: 'Categorias',
+            noCache: true,
+            affix: true,
                 progress: {
                     func: [
                         {
@@ -198,6 +210,9 @@ export default new Router({
         {
             path: "/carrito/detalles",
             name: "cart_details",
+            title: 'DetallesCarrito',
+            noCache: true,
+            affix: true,
             component: require("./views/CartDetails").default,
             meta: {
                 progress: {
@@ -232,7 +247,7 @@ export default new Router({
                         {
                             call: "color",
                             modifier: "temp",
-                            argument: "#ffb000"
+                            argument: "red"
                         },
                         { call: "fail", modifier: "temp", argument: "#6e0000" },
                         { call: "location", modifier: "temp", argument: "top" },

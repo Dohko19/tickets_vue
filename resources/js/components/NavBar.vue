@@ -88,7 +88,7 @@
                     </ul>
                 </li>
                 <li v-else>
-                    <span>Necesitas Iniciar sesion</span>
+                    <a href="/login">Necesitas Iniciar sesion</a>
                 </li>
                   <!-- <li class="nav-item dropdown" if="isAuthenticated">
                     <router-link

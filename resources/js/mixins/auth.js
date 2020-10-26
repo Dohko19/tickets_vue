@@ -17,5 +17,8 @@ module.exports = {
         guest(){
             return !this.isAuthenticated();
         }
-    }
+    },
+    mounted() {
+        console.log('mix auth');
+    },
 }
