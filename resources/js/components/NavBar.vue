@@ -28,16 +28,6 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                   <!-- @guest
-                                  <li class="nav-item">
-                                      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                  </li>
-                                  @if (Route::has('register'))
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                      </li>
-                                  @endif -->
-                  <!-- @else -->
                 <li :class="dropdownCart" class="nav-item" v-if="isAuthenticated">
                     <a @click="isDropdownOpenCart = ! isDropdownOpenCart"
                     class="nav-link dropdown-toggle"
@@ -90,55 +80,26 @@
                 <li v-else>
                     <a href="/login">Necesitas Iniciar sesion</a>
                 </li>
-                  <!-- <li class="nav-item dropdown" if="isAuthenticated">
-                    <router-link
-                      id="navbarDropdown"
-                      class="nav-link dropdown-toggle"
-                      :href="down"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      v-pre
-                    > -->
-                    <!-- {{ Auth::user()->name }} -->
-
-                      <!-- <span class="caret">
-                        {{ currentUser.name }}
-                      </span>
-                    </router-link>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <router-link
-                        class="dropdown-item"
-                        :to="{name: 'category_admin'}"
-                      >Gestionar Categorias</router-link>
-                      <router-link
-                        class="dropdown-item"
-                        :to="{name: 'products_admin'}"
-                      >Gestionar Productos
-                    </router-link> -->
-                       <!-- <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                      </form> -->
-                    <!-- </div>
-                  </li> -->
-                  <!-- @endguest -->
                 </ul>
               </div>
             </div>
           </nav>
+<!--      <transition name="fade-transform" mode="out-in">-->
+<!--          <keep-alive :include="cachedViews">-->
+<!--              <router-view :key="key" />-->
+<!--          </keep-alive>-->
+<!--      </transition>-->
       <tags-view></tags-view>
 
   </div>
 </template>
 <script>
+import TagsView from './TagsView'
+
 export default {
+    components: {
+        TagsView
+    },
     data(){
         return{
             isDropdownOpen: false,

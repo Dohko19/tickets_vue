@@ -26,10 +26,11 @@
     <div id="app">
         <nav-bar></nav-bar>
         <main class="py-4">
-{{--            <router-view></router-view>--}}
-                 <keep-alive :include="cachedViews">
-                    <router-view :key="key"></router-view>
+            <transition name="fade-transform" mode="out-in">
+                <keep-alive :include="cachedViews">
+                    <router-view :key="key" />
                 </keep-alive>
+            </transition>
         </main>
     </div>
 </body>

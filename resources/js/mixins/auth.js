@@ -18,7 +18,4 @@ module.exports = {
             return !this.isAuthenticated();
         }
     },
-    mounted() {
-        console.log('mix auth');
-    },
 }
