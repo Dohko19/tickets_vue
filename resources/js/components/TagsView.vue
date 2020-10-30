@@ -44,7 +44,7 @@ export default {
       return this.$store.state.tagsView.visitedViews
     },
     routes() {
-      return this.$store.state.permission.routes
+      return this.$store.state.routes
     }
   },
   watch: {
@@ -170,6 +170,7 @@ export default {
       }
     },
     openMenu(tag, e) {
+
       const menuMinWidth = 105
       const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
       const offsetWidth = this.$el.offsetWidth // container width

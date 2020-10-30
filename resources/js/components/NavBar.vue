@@ -133,6 +133,7 @@
               </div>
             </div>
           </nav>
+      <tags-view></tags-view>
 
   </div>
 </template>

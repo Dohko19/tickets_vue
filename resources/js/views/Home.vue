@@ -75,6 +75,11 @@ export default {
     routes() {
       return this.$store
     }
+  },
+  methods: {
+    isActive(route) {
+        return route.path === this.$route.path
+    },
   }
 };
 </script>

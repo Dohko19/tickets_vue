@@ -69,20 +69,13 @@ import auth from "./mixins/auth";
 
 Vue.mixin(auth);
 
+
+import store from './store'
+
 const app = new Vue({
     el: "#app",
     router,
-    state,
-    computed: {
-            cachedViews() {
-            return this.$store
-
-            // state.tagsView.cachedViews
-            },
-            key() {
-            return this.$route.path
-            },
-        },
+    store,
         mounted() {
             //  [App.vue specific] When App.vue is finish loading finish the progress bar
             this.$Progress.finish();
@@ -108,5 +101,14 @@ const app = new Vue({
                 //  finish the progress bar
                 this.$Progress.finish();
             });
+        },
+        computed: {
+            cachedViews() {
+                return this.$store.state.tagsView.cachedViews
+            },
+            key() {
+                return this.$route.path
+            }
         }
+
 });

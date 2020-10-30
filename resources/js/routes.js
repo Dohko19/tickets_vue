@@ -10,60 +10,52 @@ export default new Router({
             path: "/",
             name: "home",
             component: require("./views/Home").default,
-            meta: {
-                title: 'home',
-                noCache: true,
-                affix: true,
-                progress: {
-                    func: [
-                        {
-                            call: "color",
-                            modifier: "temp",
-                            argument: "#ffb000"
-                        },
-                        { call: "fail", modifier: "temp", argument: "#6e0000" },
-                        { call: "location", modifier: "temp", argument: "top" },
-                        {
-                            call: "transition",
-                            modifier: "temp",
-                            argument: {
-                                speed: "1.5s",
-                                opacity: "0.6s",
-                                termination: 400
-                            }
+            meta: { title: 'Inicio', noCache:true, affix: true },
+            progress: {
+                func: [
+                    {
+                        call: "color",
+                        modifier: "temp",
+                        argument: "#ffb000"
+                    },
+                    { call: "fail", modifier: "temp", argument: "#6e0000" },
+                    { call: "location", modifier: "temp", argument: "top" },
+                    {
+                        call: "transition",
+                        modifier: "temp",
+                        argument: {
+                            speed: "1.5s",
+                            opacity: "0.6s",
+                            termination: 400
                         }
-                    ]
-                }
+                    }
+                ]
             }
         },
         {
             path: "/personas",
             name: "people",
-            title: 'personas',
-            noCache: true,
-            affix: true,
             component: require("./views/Personas").default,
-            meta: {
-                progress: {
-                    func: [
-                        {
-                            call: "color",
-                            modifier: "temp",
-                            argument: "#ffb000"
-                        },
-                        { call: "fail", modifier: "temp", argument: "#6e0000" },
-                        { call: "location", modifier: "temp", argument: "top" },
-                        {
-                            call: "transition",
-                            modifier: "temp",
-                            argument: {
-                                speed: "1.5s",
-                                opacity: "0.6s",
-                                termination: 400
-                            }
+            meta: { title: 'Personas', noCache: true, affix: true, icon: 'lock' },
+            progress: {
+                func: [
+                    {
+                        call: "color",
+                        modifier: "temp",
+                        argument: "#ffb000"
+                    },
+                    { call: "fail", modifier: "temp", argument: "#6e0000" },
+                    { call: "location", modifier: "temp", argument: "top" },
+                    {
+                        call: "transition",
+                        modifier: "temp",
+                        argument: {
+                            speed: "1.5s",
+                            opacity: "0.6s",
+                            termination: 400
                         }
-                    ]
-                }
+                    }
+                ]
             }
         },
         {
@@ -74,6 +66,7 @@ export default new Router({
                 title: 'ProductosListado',
                 noCache: true,
                 affix: true,
+                icon: 'dashboard',
                 progress: {
                     func: [
                         {
@@ -131,7 +124,9 @@ export default new Router({
             name: "category_show",
             component: require("./views/CategoryShow").default,
             meta: {
-                progress: {
+                noCache: false,
+                affix: false,
+                    progress: {
                     func: [
                         {
                             call: "color",
@@ -185,6 +180,8 @@ export default new Router({
             name: "images_show",
             component: require("./views/ImagesShow").default,
             meta: {
+                noCache: false,
+                affix: false,
                 progress: {
                     func: [
                         {
@@ -242,6 +239,8 @@ export default new Router({
             path: "*",
             component: require("./views/404").default,
             meta: {
+                noCache: false,
+                affix: false,
                 progress: {
                     func: [
                         {
