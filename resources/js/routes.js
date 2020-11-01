@@ -6,7 +6,7 @@ Vue.use(Router);
 
 // export default new Router({
 //     routes: [
-        
+
 //     ],
 //     linkExactActiveClass: "active",
 //     mode: "history",
@@ -20,17 +20,17 @@ Vue.use(Router);
 // });
 
 export const constantRoutes = [
-    // {
-    //     path: '/redirect',
-    //     component: Layout,
-    //     hidden: true,
-    //     children: [
-    //         {
-    //         path: '/redirect/:path(.*)',
-    //         component: require('./views/redirect/index').default
-    //         }
-    //     ]
-    // },
+    {
+        path: '/redirect',
+        component: require('./views/redirect/index').default,
+        hidden: true,
+        children: [
+            {
+            path: '/redirect/:path(.*)',
+            component: require('./views/redirect/index').default
+            }
+        ]
+    },
     {
         path: "/",
         name: "home",
@@ -291,17 +291,17 @@ export const constantRoutes = [
 ]
 
 const createRouter = () => new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
+    mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0, x:0 }),
     routes: constantRoutes
   })
-  
+
   const router = createRouter()
-  
+
   // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
   export function resetRouter() {
     const newRouter = createRouter()
     router.matcher = newRouter.matcher // reset router
   }
-  
+
   export default router
