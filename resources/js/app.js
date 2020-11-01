@@ -9,7 +9,9 @@ import "vue-toastr-2/dist/vue-toastr-2.min.css";
 import VueLazyload from "vue-lazyload";
 import swal from "sweetalert2";
 import VueSweetalert2 from "vue-sweetalert2";
+import Element from 'element-ui'
 
+Vue.use(Element)
 // If you don't need the styles, do not connect
 import "sweetalert2/dist/sweetalert2.min.css";
 require("vue2-animate/dist/vue2-animate.min.css");

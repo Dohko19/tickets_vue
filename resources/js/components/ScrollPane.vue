@@ -1,16 +1,15 @@
 <template>
-<!--  <el-scrollbar ref="scrollContainer" :vertical="false" class="scroll-container" @wheel.native.prevent="handleScroll">-->
+  <el-scrollbar ref="scrollContainer" :vertical="false" class="scroll-container" @wheel.native.prevent="handleScroll">
     <div>
         <slot />
     </div>
-<!--  </el-scrollbar>-->
+  </el-scrollbar>
 </template>
 
 <script>
 const tagAndTagSpacing = 4 // tagAndTagSpacing
 
 export default {
-  name: 'ScrollPane',
   data() {
     return {
       left: 0

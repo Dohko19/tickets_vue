@@ -27,6 +27,7 @@
 
 <script>
 import ScrollPane from './ScrollPane'
+import path from 'path'
 
 export default {
   components: { ScrollPane },
@@ -73,7 +74,8 @@ export default {
     },
     filterAffixTags(routes, basePath = '/') {
       let tags = []
-
+        console.log('routes :')
+        console.log(routes)
       routes.forEach(route => {
         if (route.meta && route.meta.affix) {
           const tagPath = path.resolve(basePath, route.path)
@@ -94,7 +96,9 @@ export default {
       return tags
     },
     initTags() {
-      const affixTags = this.affixTags = this.filterAffixTags(this.routes)
+        console.log('init tags: ' + this.$router.options.routes)
+      const affixTags = this.affixTags = this.filterAffixTags(this.$router.options.routes)
+      // const affixTags = this.affixTags = this.filterAffixTags(this.routes)
       for (const tag of affixTags) {
         // Must have tag name
         if (tag.name) {
