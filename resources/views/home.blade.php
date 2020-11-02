@@ -20,15 +20,29 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome-free/css/all.min.css') }}">
-
+    <style>
+        /* Enter and leave animations can use different */
+        /* durations and timing functions.              */
+        .slide-fade-enter-active {
+            transition: all .1s ease;
+        }
+        .slide-fade-leave-active {
+            transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .slide-fade-enter, .slide-fade-leave-to
+            /* .slide-fade-leave-active below version 2.1.8 */ {
+            transform: translateX(10px);
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
         <nav-bar></nav-bar>
         <main class="py-4">
-            <transition name="fade-transform" mode="out-in">
-                <keep-alive :include="cachedViews">
-                    <router-view :key="key" />
+            <transition name="fade" mode="out-in" >
+                <keep-alive :include="cachedViews" >
+                    <router-view :key="key" style="animation-duration: 0.3s" />
                 </keep-alive>
             </transition>
         </main>

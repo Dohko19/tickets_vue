@@ -13,14 +13,14 @@
         @contextmenu.prevent.native="openMenu(tag,$event)"
       >
         {{ tag.title }}
-        <span v-if="!isAffix(tag)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
+          <span v-if="!isAffix(tag)"  @click.prevent.stop="closeSelectedTag(tag)" ><i class="fas fa-times closetag"></i></span>
       </router-link>
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-      <li @click="refreshSelectedTag(selectedTag)">Refresh</li>
-      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">Close</li>
-      <li @click="closeOthersTags">Close Others</li>
-      <li @click="closeAllTags(selectedTag)">Close All</li>
+      <li @click="refreshSelectedTag(selectedTag)">Recargar</li>
+      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">Cerrar</li>
+      <li @click="closeOthersTags">Cerrar Otros</li>
+      <li @click="closeAllTags(selectedTag)">Cerrar Todo</li>
     </ul>
   </div>
 </template>
@@ -272,10 +272,27 @@ export default {
 //reset element css of el-icon-close
 .tags-view-wrapper {
   .tags-view-item {
+      .closetag{
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          text-align: center;
+          transition: all .3s cubic-bezier(.645, .045, .355, 1);
+          transform-origin: 100% 50%;
+          &:before {
+              transform: scale(.6);
+              display: inline-block;
+              vertical-align: -1px;
+          }
+          &:hover {
+              background-color: #b4bccc;
+              color: #fff;
+          }
+      }
     .el-icon-close {
-      width: 16px;
-      height: 16px;
-      vertical-align: 2px;
+      width: 7px;
+      height: 7px;
+      vertical-align: 1px;
       border-radius: 50%;
       text-align: center;
       transition: all .3s cubic-bezier(.645, .045, .355, 1);
@@ -293,3 +310,4 @@ export default {
   }
 }
 </style>
+

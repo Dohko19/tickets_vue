@@ -36,12 +36,15 @@ export default {
     };
   },
   mounted() {
+      this.$Progress.start()
     axios.get(`/category/show/${this.$route.params.category}`)
       .then(res => {
-        this.category = res.data;
+        this.category = res.data
+          this.$Progress.finish()
       })
       .catch(err => {
         console.log(err.response.data);
+          this.$Progress.fail()
       });
   }
 };
