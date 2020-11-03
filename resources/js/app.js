@@ -40,6 +40,7 @@ Vue.component("nav-bar", require("./components/NavBar").default);
 Vue.component("admin-category", require("./components/AdminCategory").default);
 Vue.component("admin-products", require("./components/AdminProducts").default);
 Vue.component("tags-view", require("./components/TagsView").default);
+Vue.component("breadcum", require("./components/Breadcum/index").default);
 Vue.component("vue-dropzone", vue2Dropzone);
 
 import auth from "./mixins/auth";
@@ -62,4 +63,4 @@ const app = new Vue({
             }
         }
 
-});
+})  ;

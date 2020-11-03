@@ -151,7 +151,6 @@ export default {
     },
     methods: {
         newProduct() {
-            this.$Progress.start();
             this.editmode = false;
             this.form.name = '';
             this.form.description = '';
@@ -160,10 +159,8 @@ export default {
             this.form.category_id = '',
             this.listCategory();
             $("#addNew").modal("show");
-            this.$Progress.finish();
         },
         editProduct(product) {
-            this.$Progress.start();
             this.editmode = true;
             this.form.id = product['id'];
             this.form.name = product['name'];
@@ -173,10 +170,8 @@ export default {
             this.form.category_id = product['category_id'],
             this.listCategory();
             $("#addNew").modal("show");
-            this.$Progress.finish();
         },
         updateProduct(){
-            this.$Progress.start();
             let formData = new FormData();
             formData.append("name", this.form.name);
             formData.append("description", this.form.description);
@@ -197,9 +192,7 @@ export default {
                 this.form.category_id = '',
                 toastr["success"]("Producto Actualizado Correctamente", "Ok!");
                 this.listProducts();
-                this.$Progress.finish();
                 toastr.options = {
-                    closeButton: true,
                     closeButton: true,
                     showMethod: "fadeIn",
                     hideMethod: "fadeOut",
@@ -210,11 +203,9 @@ export default {
                 .catch(err => {
                 console.log(err.response);
                 toastr["warning"]("Error al registrar"+err.response, "Error!");
-                this.$Progress.fail();
                 });
         },
         createProduct(){
-            this.$Progress.start();
             let formData = new FormData();
             formData.append("name", this.form.name);
             formData.append("description", this.form.description);
@@ -230,9 +221,7 @@ export default {
                 this.form.category_id = '',
                 toastr["success"]("Producto registrado Correctamente", "Ok!");
                 this.listProducts();
-                this.$Progress.finish();
                 toastr.options = {
-                    closeButton: true,
                     closeButton: true,
                     showMethod: "fadeIn",
                     hideMethod: "fadeOut",
@@ -242,7 +231,6 @@ export default {
                 })
                 .catch(err => {
                 console.log(err.response);
-                this.$Progress.fail();
                 });
         },
         listCategory()
@@ -252,25 +240,20 @@ export default {
                 this.categories = res.data;
             })
             .catch(err => {
-                this.$Progress.fail();
                 console.log(err.response);
             })
         },
         listProducts(){
             axios.get('/products')
             .then(res => {
-                this.$Progress.start()
                 this.products = res.data
-                this.$Progress.finish()
             })
             .catch(err => {
-                this.$Progress.fail()
 
                 console.log(err.response);
             })
         },
         deleteProduct(product){
-             this.$Progress.start();
             swal
                 .fire({
                 title: "¿Estas seguro de Borrar esta Categoria?",
@@ -287,11 +270,9 @@ export default {
                     axios.delete('/product/'+product)
                     .then(res => {
                         this.listProducts();
-                        this.$Progress.finish();
                     })
                     .catch(err => {
                         console.log(err);
-                        this.$Progress.fail();
                     });
                     swal.fire("Eliminado", "Producto eliminado.", "success");
                 }

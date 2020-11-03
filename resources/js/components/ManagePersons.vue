@@ -116,7 +116,6 @@ export default {
       });
     },
     submit() {
-      this.$Progress.start();
       let formData = new FormData();
       formData.append("name", this.form.name);
       formData.append("email", this.form.email);
@@ -137,7 +136,6 @@ export default {
           this.form.avatar = [];
           toastr["success"]("Persona registrada Correctamente", "Ok!");
           this.listPeople();
-          this.$Progress.finish();
           toastr.options = {
             closeButton: true,
             closeButton: true,
@@ -148,19 +146,15 @@ export default {
         })
         .catch(err => {
           console.log(err);
-          this.$Progress.fail();
         });
     },
     listPeople() {
-      this.$Progress.start();
       axios
         .get("people/list")
         .then(res => {
-          this.$Progress.finish();
           this.people = res.data;
         })
         .catch(err => {
-          this.$Progress.fail();
           console.log(err.response);
         });
     }

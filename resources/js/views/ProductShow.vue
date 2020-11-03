@@ -162,11 +162,9 @@ export default {
             $("#addNew").modal("show");
         },
         addNewArticle(){
-          this.$Progress.start();
           this.$v.$touch()
           if (this.$v.$invalid) {
             this.submitStatus = 'ERROR';
-            this.$Progress.fail();
 
           } else {
           // do your submit logic here
@@ -182,10 +180,8 @@ export default {
               {
               toastr["warning"](""+res.data.fail, "Upps!");
               this.submitStatus = 'Ops';
-                this.$Progress.finish();
               }
               else{
-                  this.$Progress.finish();
               toastr["info"]("Articulo Agregado correctamente", "Ok!");
 
               }
@@ -195,7 +191,6 @@ export default {
           })
           .catch(err => {
                 console.log(err);
-                this.$Progress.fail();
           })
 
           }
@@ -205,12 +200,9 @@ export default {
         axios
             .get("/products/" + this.$route.params.product)
             .then(res => {
-                this.$Progress.start();
                 this.product = res.data;
-                this.$Progress.finish();
             })
             .catch(err => {
-                this.$Progress.fail();
 
                 console.log(err.response);
             });

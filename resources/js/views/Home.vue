@@ -42,17 +42,13 @@ export default {
     };
   },
   mounted() {
-      this.$Progress.start()
     axios
       .get("category/list")
       .then(res => {
-        this.categories = res.data;
-          this.$Progress.finish()
+        this.categories = res.data
       })
       .catch(err => {
         console.log(err);
-        this.$Progress.fail();
-          this.$Progress.fail()
       });
   }
 };

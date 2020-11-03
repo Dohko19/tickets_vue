@@ -90,7 +90,7 @@
 <!--          </keep-alive>-->
 <!--      </transition>-->
       <tags-view></tags-view>
-
+      <breadcum></breadcum>
   </div>
 </template>
 <script>
