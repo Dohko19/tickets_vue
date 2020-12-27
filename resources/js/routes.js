@@ -60,8 +60,8 @@ export const constantRoutes = [
         name: "category_admin",
         component: require("./views/Categories").default,
         meta: {
-        title: 'Categorias',
-        affix: true
+            title: 'Categorias',
+            affix: true
         },
     },
     {
